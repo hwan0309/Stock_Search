@@ -15,7 +15,10 @@
 
 ## 빌드환경
 * Pycharm 3.12 이상
-
+* Flask
+* Request
+* BeautifulSoup
+  
 
 ## 테스트환경
 * Mac / Window 10 이상
