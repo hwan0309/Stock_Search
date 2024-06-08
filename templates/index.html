@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Price Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .stock-info, .chart {
+            margin-top: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>주가정보</h1>
+    <form action="/get_price" method="post">
+        <label for="code">종목코드:</label>
+        <input type="text" id="code" name="code" required>
+        <button type="submit">검색</button>
+    </form>
+
+    <button onclick="window.open('https://www.ktb.co.kr/trading/popup/itemPop.jspx', '_blank')">종목코드 검색</button>
+
+    {% if 현재가 %}
+    <div class="stock-info">
+        <h2>주식정보</h2>
+        <p><strong>주가명:</strong> {{ 주가명 }}</p>
+        <p><strong>현재가:</strong> {{ 현재가 }}</p>
+        <p><strong>변동률:</strong> {{ 변동률 }}</p>
+        <p><strong>거래량:</strong> {{ 거래량 }}</p>
+    </div>
+    {% endif %}
+
+    {% if chart_base64 %}
+    <div class="chart">
+        <h2>Stock Chart</h2>
+        <img src="data:image/png;base64,{{ chart_base64 }}" alt="Stock Chart">
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
